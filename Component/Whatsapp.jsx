@@ -25,7 +25,7 @@ const Whatsapp = () => {
       >
         <FaInstagram size={30} />
       </a>
-
+ 
       <a
         href="https://www.facebook.com/profile.php?id=100064843774189"
         target="_blank"
