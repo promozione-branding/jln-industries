@@ -39,7 +39,7 @@ const Whatsapp = () => {
       <a
         href="tel:+919891000561"
         aria-label="Call Us"
-        className="p-3 mt-4 rounded-full shadow-lg bg-white text-green-600 transition animate-bounce"
+        className="p-3 mt-4 rounded-full shadow-lg bg-white text-green-600 transition"
       >
         <Image src="/561253.png" alt="Phone Icon" width={30} height={30} />
       </a>
