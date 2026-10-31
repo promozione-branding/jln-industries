@@ -2,6 +2,7 @@
 import React from "react";
 import { FaWhatsapp, FaPhoneAlt, FaInstagram, FaFacebookF } from "react-icons/fa";
 import Image from "next/image";
+import { handleCallClick } from "@/lib/track";
 const Whatsapp = () => {
    return (
     <div className="fixed bottom-5 right-4 z-50 flex flex-col items-center gap-3">
@@ -36,7 +37,7 @@ const Whatsapp = () => {
         <FaFacebookF size={30} />
       </a>
 
-      <a
+      <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })}
         href="tel:+919891000561"
         aria-label="Call Us"
         className="p-3 rounded-full shadow-lg bg-white text-green-600 transition"

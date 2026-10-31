@@ -75,7 +75,7 @@ const Footer = () => {
     <FaYoutube className="text-white text-sm" />
   </a>
 
-  <a
+  <a 
     href="https://wa.me/918130385561"
     target="_blank"
     rel="noopener noreferrer"

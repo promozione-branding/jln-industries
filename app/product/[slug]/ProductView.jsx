@@ -8,20 +8,21 @@ import "swiper/css";
 import Link from "next/link";
 import { Heart, Minus, Plus } from "lucide-react";
 import { toast } from "react-hot-toast";
-import {  Thumbs } from "swiper/modules";
+import { Thumbs } from "swiper/modules";
 import { FaWhatsapp } from "react-icons/fa";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useSearchParams } from "next/navigation";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 export default function ProductView({ product, relatedProducts }) {
 
 
 
 
-const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-const category =
-  searchParams.get("category");
+  const category =
+    searchParams.get("category");
 
 
 
@@ -35,8 +36,8 @@ const category =
   const [activeTab, setActiveTab] = useState("description");
   const [animate, setAnimate] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
- const [selectedSize, setSelectedSize] = useState("");
-const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
   const addToCart = useCartStore((state) => state.addToCart);
   const updateQty = useCartStore((state) => state.updateQty);
   const removeItem = useCartStore((state) => state.removeItem);
@@ -53,15 +54,15 @@ const [selectedColor, setSelectedColor] = useState("");
 
   // for colors
   const selectedColorData =
-  product.colors?.find(
-    (c) => c.color === selectedColor
-  ) || null;
+    product.colors?.find(
+      (c) => c.color === selectedColor
+    ) || null;
 
 
-const selectedSizeData =
-  product.sizes?.find(
-    (s) => s.size === selectedSize
-  ) || null;
+  const selectedSizeData =
+    product.sizes?.find(
+      (s) => s.size === selectedSize
+    ) || null;
 
   const isWishlisted = isInWishlist(product._id);
 
@@ -103,54 +104,54 @@ const selectedSizeData =
     return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : "";
   };
 
-         
-        console.log(product.longdescription);
+
+  console.log(product.longdescription);
 
   return (
     <div className="bg-white  font-caladea px-4 sm:px-6 md:px-10 lg:px-20 py-6 md:py-8 mt-2">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-       
-
-{/* LEFT */}
-<div className="md:sticky md:top-38 self-start">
-
-  {/* BREADCRUMB */}
-<p className="text-gray-500 uppercase mb-5 text-xs sm:text-sm tracking-[2px] font-poppins">
-  Home /{" "}
-
-  {category && (
-    <>
-      <span className="uppercase">
-        {decodeURIComponent(category).replace(
-          /-/g,
-          " "
-        )}
-      </span>
-      {" / "}
-    </>
-  )}
-
-  <span className="text-black capitalize font-semibold">
-    {product.name}
-  </span>
-</p>
 
 
+        {/* LEFT */}
+        <div className="md:sticky md:top-38 self-start">
 
-<div className="relative">
-  {/* Mobile Wishlist */}
-  <button
-    onClick={() => {
-      setAnimate(true);
-      setTimeout(() => setAnimate(false), 300);
+          {/* BREADCRUMB */}
+          <p className="text-gray-500 uppercase mb-5 text-xs sm:text-sm tracking-[2px] font-poppins">
+            Home /{" "}
 
-      if (isWishlisted) {
-        removeFromWishlist(product._id);
-      } else {
-        addToWishlist(product);
-      }
-    }}
-    className="
+            {category && (
+              <>
+                <span className="uppercase">
+                  {decodeURIComponent(category).replace(
+                    /-/g,
+                    " "
+                  )}
+                </span>
+                {" / "}
+              </>
+            )}
+
+            <span className="text-black capitalize font-semibold">
+              {product.name}
+            </span>
+          </p>
+
+
+
+          <div className="relative">
+            {/* Mobile Wishlist */}
+            <button
+              onClick={() => {
+                setAnimate(true);
+                setTimeout(() => setAnimate(false), 300);
+
+                if (isWishlisted) {
+                  removeFromWishlist(product._id);
+                } else {
+                  addToWishlist(product);
+                }
+              }}
+              className="
       md:hidden
       absolute
       top-3
@@ -166,28 +167,27 @@ const selectedSizeData =
       items-center
       justify-center
     "
-  >
-    <Heart
-      size={22}
-      className={`${
-        isWishlisted
-          ? "fill-red-500 text-red-500"
-          : "text-red-500"
-      }`}
-    />
-  </button>
+            >
+              <Heart
+                size={22}
+                className={`${isWishlisted
+                  ? "fill-red-500 text-red-500"
+                  : "text-red-500"
+                  }`}
+              />
+            </button>
 
- {/* MAIN SLIDER */}
-  <Swiper
-    modules={[Autoplay, Thumbs]}
-    thumbs={{ swiper: thumbsSwiper }}
-    autoplay={{
-      delay: 2500,
-      disableOnInteraction: false,
-    }}
-    loop={true}
-    spaceBetween={10}
-    className="
+            {/* MAIN SLIDER */}
+            <Swiper
+              modules={[Autoplay, Thumbs]}
+              thumbs={{ swiper: thumbsSwiper }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              spaceBetween={10}
+              className="
       rounded-[20px]
       sm:rounded-[26px]
       md:rounded-[32px]
@@ -195,88 +195,88 @@ const selectedSizeData =
    
 
     "
-  >
+            >
 
-    {/* IMAGE SLIDES */}
-    {product.images?.map((img, i) => (
+              {/* IMAGE SLIDES */}
+              {product.images?.map((img, i) => (
 
-      <SwiperSlide key={i}>
+                <SwiperSlide key={i}>
 
-        <div
-          className="overflow-hidden bg-white cursor-zoom-in"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
+                  <div
+                    className="overflow-hidden bg-white cursor-zoom-in"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                  >
 
-          <Image
-            src={img}
-            width={1000}
-            height={500}
-            priority
-            alt={product.name}
-            style={zoomStyle}
-            className="
+                    <Image
+                      src={img}
+                      width={1000}
+                      height={500}
+                      priority
+                      alt={product.name}
+                      style={zoomStyle}
+                      className="
            priority max-w-full  h-[350px] md:h-[560px] transition-transform duration-200 ease-out
             "
-          />
+                    />
 
-        </div>
+                  </div>
 
-        
 
-      </SwiperSlide>
 
-    ))}
+                </SwiperSlide>
 
-    {/* VIDEO */}
-    {product.youtubeLink && (
+              ))}
 
-      <SwiperSlide>
+              {/* VIDEO */}
+              {product.youtubeLink && (
 
-        <iframe
-          src={getYoutubeEmbedUrl(product.youtubeLink)}
-          className="
+                <SwiperSlide>
+
+                  <iframe
+                    src={getYoutubeEmbedUrl(product.youtubeLink)}
+                    className="
             w-full
             h-[300px]
             sm:h-[420px]
             md:h-[560px]
           "
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        />
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
 
-      </SwiperSlide>
+                </SwiperSlide>
 
-    )}
+              )}
 
-  </Swiper>
-</div>
-
-
+            </Swiper>
+          </div>
 
 
- 
 
-  {/* THUMBNAILS */}
-  <Swiper
-    onSwiper={setThumbsSwiper}
-    spaceBetween={12}
-    slidesPerView={"auto"}
-    watchSlidesProgress={true}
-    modules={[Thumbs]}
-    className="mt-5"
-  >
 
-    {/* IMAGE THUMBS */}
-    {product.images?.map((img, i) => (
 
-      <SwiperSlide
-        key={i}
-        className="!w-auto"
-      >
 
-        <div
-          className="
+          {/* THUMBNAILS */}
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            spaceBetween={12}
+            slidesPerView={"auto"}
+            watchSlidesProgress={true}
+            modules={[Thumbs]}
+            className="mt-5"
+          >
+
+            {/* IMAGE THUMBS */}
+            {product.images?.map((img, i) => (
+
+              <SwiperSlide
+                key={i}
+                className="!w-auto"
+              >
+
+                <div
+                  className="
             overflow-hidden
             rounded-2xl
             border
@@ -286,12 +286,12 @@ const selectedSizeData =
             transition-all
             duration-300
           "
-        >
+                >
 
-          <img
-            src={img}
-            alt={`thumb-${i}`}
-            className="
+                  <img
+                    src={img}
+                    alt={`thumb-${i}`}
+                    className="
               h-20
               w-20
               sm:h-24
@@ -300,21 +300,21 @@ const selectedSizeData =
               bg-white
               p-2
             "
-          />
+                  />
 
-        </div>
+                </div>
 
-      </SwiperSlide>
+              </SwiperSlide>
 
-    ))}
+            ))}
 
-    {/* VIDEO THUMB */}
-    {product.youtubeLink && (
+            {/* VIDEO THUMB */}
+            {product.youtubeLink && (
 
-      <SwiperSlide className="!w-auto">
+              <SwiperSlide className="!w-auto">
 
-        <div
-          className="
+                <div
+                  className="
             relative
             overflow-hidden
             rounded-2xl
@@ -325,164 +325,163 @@ const selectedSizeData =
             transition-all
             duration-300
           "
-        >
+                >
 
-          <img
-            src={`https://img.youtube.com/vi/${
-              getYoutubeEmbedUrl(product.youtubeLink)
-                .split("/embed/")[1]
-                ?.split("?")[0]
-            }/hqdefault.jpg`}
-            className="
+                  <img
+                    src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(product.youtubeLink)
+                      .split("/embed/")[1]
+                      ?.split("?")[0]
+                      }/hqdefault.jpg`}
+                    className="
               h-20
               w-20
               sm:h-24
               sm:w-24
               object-cover
             "
-            alt="youtube-thumb"
-          />
+                    alt="youtube-thumb"
+                  />
 
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
 
-            <div className="bg-red-600 text-white rounded-full w-9 h-9 flex items-center justify-center text-sm">
-              ▶
-            </div>
+                    <div className="bg-red-600 text-white rounded-full w-9 h-9 flex items-center justify-center text-sm">
+                      ▶
+                    </div>
 
-          </div>
+                  </div>
+
+                </div>
+
+              </SwiperSlide>
+
+            )}
+
+          </Swiper>
 
         </div>
 
-      </SwiperSlide>
-
-    )}
-
-  </Swiper>
-
-</div>
-
         {/* right */}
-       <div className="relative">
+        <div className="relative">
 
-  {/* TOP MINI LABEL */}
-  <div className="flex items-center gap-3 mb-4">
+          {/* TOP MINI LABEL */}
+          <div className="flex items-center gap-3 mb-4">
 
-    <div className="h-[1px] w-10 bg-black" />
+            <div className="h-[1px] w-10 bg-black" />
 
-    <p className="uppercase tracking-[4px] text-[11px] text-gray-500 font-medium">
-      Luxury Essential
-    </p>
+            <p className="uppercase tracking-[4px] text-[11px] text-gray-500 font-medium">
+              Luxury Essential
+            </p>
 
-  </div>
+          </div>
 
-  {/* PRODUCT TITLE */}
-  <h1 className="text-[34px] md:text-[40px] leading-[1.05] font-caladea font-semibold text-black max-w-xl">
-    {product.name}
-  </h1>
+          {/* PRODUCT TITLE */}
+          <h1 className="text-[34px] md:text-[40px] leading-[1.05] font-caladea font-semibold text-black max-w-xl">
+            {product.name}
+          </h1>
 
-  {/* PRICE SECTION */}
-  <div className="mt-4 flex items-end flex-wrap gap-4">
+          {/* PRICE SECTION */}
+          <div className="mt-4 flex items-end flex-wrap gap-4">
 
-    <div className="flex items-end gap-5">
+            <div className="flex items-end gap-5">
 
-      <span className="text-[38px]   font-semibold tracking-tight text-black">
-        ₹ {" "}{selectedSizeData?.price || product.price}
-      </span>
+              <span className="text-[38px]   font-semibold tracking-tight text-black">
+                ₹ {" "}{selectedSizeData?.price || product.price}
+              </span>
 
-      {(selectedSizeData?.oldPrice ||
-        product.oldPrice) > 0 && (
+              {(selectedSizeData?.oldPrice ||
+                product.oldPrice) > 0 && (
 
-        <span className="text-2xl text-gray-600 line-through mb-3 font-medium">
-          ₹
-          {selectedSizeData?.oldPrice ||
-            product.oldPrice}
-        </span>
+                  <span className="text-2xl text-gray-600 line-through mb-3 font-medium">
+                    ₹
+                    {selectedSizeData?.oldPrice ||
+                      product.oldPrice}
+                  </span>
 
-      )}
+                )}
 
-    </div>
+            </div>
 
-    {(selectedSizeData?.oldPrice ||
-      product.oldPrice) > 0 && (
+            {(selectedSizeData?.oldPrice ||
+              product.oldPrice) > 0 && (
 
-      <div className="mb-2 rounded-full bg-[#f4f4f4] px-3 py-1">
+                <div className="mb-2 rounded-full bg-[#f4f4f4] px-3 py-1">
 
-        <span className="text-md font-medium text-black">
+                  <span className="text-md font-medium text-black">
 
-          {Math.round(
-            (((selectedSizeData?.oldPrice ||
-              product.oldPrice) -
-              (selectedSizeData?.price ||
-                product.price)) /
-              (selectedSizeData?.oldPrice ||
-                product.oldPrice)) *
-              100
-          )}
-          % OFF
+                    {Math.round(
+                      (((selectedSizeData?.oldPrice ||
+                        product.oldPrice) -
+                        (selectedSizeData?.price ||
+                          product.price)) /
+                        (selectedSizeData?.oldPrice ||
+                          product.oldPrice)) *
+                      100
+                    )}
+                    % OFF
 
-        </span>
+                  </span>
 
-      </div>
+                </div>
 
-    )}
+              )}
 
-  </div>
+          </div>
 
-  {/* TAX */}
-  <p className="mt-2 text-sm text-red-600 font-caladea">
-    Inclusive of all taxes
-  </p>
+          {/* TAX */}
+          <p className="mt-2 text-sm text-red-600 font-caladea">
+            Inclusive of all taxes
+          </p>
 
-<div className="mt-4 flex items-center gap-3">
-  {product.stock > 0 ? (
-    <>
-      <span className="h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
-      <span className="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700 border border-green-200">
-        In Stock ({product.stock} Available)
-      </span>
-    </>
-  ) : (
-    <>
-      <span className="h-3 w-3 rounded-full bg-red-500"></span>
-      <span className="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-700 border border-red-200">
-        Out of Stock
-      </span>
-    </>
-  )}
-</div>
+          <div className="mt-4 flex items-center gap-3">
+            {product.stock > 0 ? (
+              <>
+                <span className="h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700 border border-green-200">
+                  In Stock ({product.stock} Available)
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="h-3 w-3 rounded-full bg-red-500"></span>
+                <span className="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-700 border border-red-200">
+                  Out of Stock
+                </span>
+              </>
+            )}
+          </div>
 
-  {/* DESCRIPTION */}
-  <div className="mt-4">
+          {/* DESCRIPTION */}
+          <div className="mt-4">
 
-    <p className="text-[15px] ] text-gray-800 font-caladea max-w-2xl">
-      {product.description}
-    </p>
+            <p className="text-[15px] ] text-gray-800 font-caladea max-w-2xl">
+              {product.description}
+            </p>
 
-  </div>
+          </div>
 
-  {/* SIZE */}
-  {product?.sizes?.length > 0 && (
+          {/* SIZE */}
+          {product?.sizes?.length > 0 && (
 
-    <div className="mt-5">
+            <div className="mt-5">
 
-      <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center justify-between mb-5">
 
-        <h3 className="text-[15px] uppercase tracking-[3px] text-black font-semibold">
-          Select Size
-        </h3>
+                <h3 className="text-[15px] uppercase tracking-[3px] text-black font-semibold">
+                  Select Size
+                </h3>
 
-      
 
-      </div>
 
-      <div className="flex flex-wrap gap-3">
+              </div>
 
-        {product.sizes.map((item, i) => (
+              <div className="flex flex-wrap gap-3">
 
-          <button
-            key={i}
-            onClick={() => setSelectedSize(item.size)}
-            className={`
+                {product.sizes.map((item, i) => (
+
+                  <button
+                    key={i}
+                    onClick={() => setSelectedSize(item.size)}
+                    className={`
               h-[54px]
               min-w-[70px]
               px-5
@@ -492,176 +491,174 @@ const selectedSizeData =
               border
               transition-all
               duration-300 uppercase
-              ${
-                selectedSize === item.size
-                  ? "bg-black text-white border-black"
-                  : "bg-white border-gray-200 hover:border-black"
-              }
+              ${selectedSize === item.size
+                        ? "bg-black text-white border-black"
+                        : "bg-white border-gray-200 hover:border-black"
+                      }
             `}
-          >
+                  >
 
-            {item.size}
+                    {item.size}
 
-          </button>
+                  </button>
 
-        ))}
+                ))}
 
-      </div>
+              </div>
 
-    </div>
+            </div>
 
-  )}
+          )}
 
-  {/* COLORS */}
- {product?.colors?.length > 0 && (
-  <div className="mt-8">
-    <h3 className="text-sm uppercase tracking-[3px] font-semibold mb-5">
-      Select Color
-    </h3>
+          {/* COLORS */}
+          {product?.colors?.length > 0 && (
+            <div className="mt-8">
+              <h3 className="text-sm uppercase tracking-[3px] font-semibold mb-5">
+                Select Color
+              </h3>
 
-    <div className="flex flex-wrap gap-4">
-      {product.colors.map((item, i) => {
-        const active =
-          selectedColor === item.color;
+              <div className="flex flex-wrap gap-4">
+                {product.colors.map((item, i) => {
+                  const active =
+                    selectedColor === item.color;
 
-        return (
-          <button
-            key={i}
-            onClick={() =>
-              setSelectedColor(item.color)
-            }
-            className={`
+                  return (
+                    <button
+                      key={i}
+                      onClick={() =>
+                        setSelectedColor(item.color)
+                      }
+                      className={`
               flex flex-col items-center
               transition-all duration-300
             `}
-          >
-            <div
-              className={`
+                    >
+                      <div
+                        className={`
                 relative
                 h-[80px]
                 w-[80px]
                 rounded-2xl
                 overflow-hidden
                 border-2
-                ${
-                  active
-                    ? "border-yellow-500"
-                    : "border-gray-200"
-                }
+                ${active
+                            ? "border-yellow-500"
+                            : "border-gray-200"
+                          }
               `}
-            >
-             {item.colorImage ? (
-  <img
-    src={item.colorImage}
-    alt={item.color}
-    className="w-full h-full object-cover"
-  />
-) : item.code ? (
-  <div
-    className="w-full h-full"
-    style={{
-      backgroundColor: item.code,
-    }}
-  />
-) : (
-  <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">
-    No Image
-  </div>
-)}
+                      >
+                        {item.colorImage ? (
+                          <img
+                            src={item.colorImage}
+                            alt={item.color}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : item.code ? (
+                          <div
+                            className="w-full h-full"
+                            style={{
+                              backgroundColor: item.code,
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">
+                            No Image
+                          </div>
+                        )}
 
-              {active && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="white"
-                    viewBox="0 0 24 24"
+                        {active && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="white"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M20.285 6.709l-11.025 11.025-5.545-5.545 1.414-1.414 4.131 4.131 9.611-9.611z" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+
+                      <span className="mt-2 text-sm font-medium text-center">
+                        {item.color}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+
+          {/* SPECIFICATIONS */}
+          {product?.specifications?.length > 0 && (
+
+            <div className="mt-10">
+
+              <h3 className="text-[18px] uppercase tracking-[3px] text-black font-semibold mb-6">
+                Product Specifications
+              </h3>
+
+              <div className="space-y-4">
+
+                {product.specifications.map((spec, index) => (
+
+                  <div
+                    key={index}
+                    className="flex items-start justify-between gap-8 border-b border-gray-100 pb-4"
                   >
-                    <path d="M20.285 6.709l-11.025 11.025-5.545-5.545 1.414-1.414 4.131 4.131 9.611-9.611z" />
-                  </svg>
-                </div>
-              )}
+
+                    <p className="text-[15px] uppercase tracking-wide text-gray-800 font-bold min-w-[120px]">
+                      {spec.key}
+                    </p>
+
+                    <p className="text-[15px] text-black font-semibold text-right leading-relaxed">
+                      {spec.value}
+                    </p>
+
+                  </div>
+
+                ))}
+
+              </div>
+
             </div>
 
-            <span className="mt-2 text-sm font-medium text-center">
-              {item.color}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  </div>
-)}
+          )}
 
+          <div className="mt-6 flex items-end gap-2 md:gap-8">
+            {/* QUANTITY */}
+            <div>
+              <p className="text-[15px] uppercase tracking-[3px] text-black font-semibold mb-4">
+                Quantity
+              </p>
 
-  {/* SPECIFICATIONS */}
-  {product?.specifications?.length > 0 && (
+              <div className="flex items-center border border-gray-200 rounded-full overflow-hidden w-fit">
+                <button
+                  onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                  className="h-12 w-12   md:h-14 md:w-14 flex items-center justify-center hover:bg-black   hover:text-white transition"
+                >
+                  <Minus size={16} />
+                </button>
 
-    <div className="mt-10">
+                <div className="min-w-[60px] text-center font-semibold text-lg">
+                  {quantity}
+                </div>
 
-      <h3 className="text-[18px] uppercase tracking-[3px] text-black font-semibold mb-6">
-        Product Specifications
-      </h3>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="h-12 w-12 md:h-14 md:w-14 flex items-center justify-center hover:bg-black hover:text-white transition"
+                >
+                  <Plus size={16} />
+                </button>
+              </div>
+            </div>
 
-      <div className="space-y-4">
-
-        {product.specifications.map((spec, index) => (
-
-          <div
-            key={index}
-            className="flex items-start justify-between gap-8 border-b border-gray-100 pb-4"
-          >
-
-            <p className="text-[15px] uppercase tracking-wide text-gray-800 font-bold min-w-[120px]">
-              {spec.key}
-            </p>
-
-            <p className="text-[15px] text-black font-semibold text-right leading-relaxed">
-              {spec.value}
-            </p>
-
-          </div>
-
-        ))}
-
-      </div>
-
-    </div>
-
-  )}
-
- <div className="mt-6 flex items-end gap-2 md:gap-8">
-  {/* QUANTITY */}
-  <div>
-    <p className="text-[15px] uppercase tracking-[3px] text-black font-semibold mb-4">
-      Quantity
-    </p>
-
-    <div className="flex items-center border border-gray-200 rounded-full overflow-hidden w-fit">
-      <button
-        onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-        className="h-12 w-12   md:h-14 md:w-14 flex items-center justify-center hover:bg-black   hover:text-white transition"
-      >
-        <Minus size={16} />
-      </button>
-
-      <div className="min-w-[60px] text-center font-semibold text-lg">
-        {quantity}
-      </div>
-
-      <button
-        onClick={() => setQuantity(quantity + 1)}
-        className="h-12 w-12 md:h-14 md:w-14 flex items-center justify-center hover:bg-black hover:text-white transition"
-      >
-        <Plus size={16} />
-      </button>
-    </div>
-  </div>
-
-  {/* BULK ORDER */}
-  <a
-    href="tel:9456664444"
-    className="
+            {/* BULK ORDER */}
+            <a onClick={() => handleCallClick({ source: "Website product page", obj: product.name || "N/A" })}
+              href="tel:9456664444"
+              className="
       h-14
       px-5
       md:px-8
@@ -679,60 +676,60 @@ const selectedSizeData =
       hover:scale-[1.02]
       animate-pulse
     "
-  >
-    Want Bulk Order?
-  </a>
-</div>
+            >
+              Want Bulk Order?
+            </a>
+          </div>
 
-  {/* CTA BUTTONS */}
-  <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {/* CTA BUTTONS */}
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
 
-    {/* CART */}
-    <button
-  onClick={() => {
-  // Check color first
-  if (
-    product?.colors?.length > 0 &&
-    !selectedColor
-  ) {
-    toast.error("Please select color first");
-    return;
-  }
+            {/* CART */}
+            <button
+              onClick={() => {
+                // Check color first
+                if (
+                  product?.colors?.length > 0 &&
+                  !selectedColor
+                ) {
+                  toast.error("Please select color first");
+                  return;
+                }
 
-  // Then check size
-  if (
-    product?.sizes?.length > 0 &&
-    !selectedSize
-  ) {
-    toast.error("Please select size first");
-    return;
-  }
+                // Then check size
+                if (
+                  product?.sizes?.length > 0 &&
+                  !selectedSize
+                ) {
+                  toast.error("Please select size first");
+                  return;
+                }
 
-  const selectedSizeData =
-    product?.sizes?.find(
-      (s) => s.size === selectedSize
-    );
+                const selectedSizeData =
+                  product?.sizes?.find(
+                    (s) => s.size === selectedSize
+                  );
 
-  addToCart(
-    {
-      ...product,
-      selectedSize,
-      selectedColor,
-      price:
-        selectedSizeData?.price ||
-        product.price,
-      oldPrice:
-        selectedSizeData?.oldPrice ||
-        product.oldPrice,
-      sizeStock:
-        selectedSizeData?.stock || 0,
-    },
-    quantity
-  );
+                addToCart(
+                  {
+                    ...product,
+                    selectedSize,
+                    selectedColor,
+                    price:
+                      selectedSizeData?.price ||
+                      product.price,
+                    oldPrice:
+                      selectedSizeData?.oldPrice ||
+                      product.oldPrice,
+                    sizeStock:
+                      selectedSizeData?.stock || 0,
+                  },
+                  quantity
+                );
 
-  toast.success("Added to cart");
-}}
-      className="
+                toast.success("Added to cart");
+              }}
+              className="
         h-[60px]
         rounded-full
         bg-black
@@ -743,26 +740,26 @@ const selectedSizeData =
         hover:scale-[1.02]
         hover:bg-[#111]
       "
-    >
-      Add To Cart
-    </button>
+            >
+              Add To Cart
+            </button>
 
 
 
-    {/* WISHLIST */}
-    <button
-      onClick={() => {
-        setAnimate(true);
+            {/* WISHLIST */}
+            <button
+              onClick={() => {
+                setAnimate(true);
 
-        setTimeout(() => setAnimate(false), 300);
+                setTimeout(() => setAnimate(false), 300);
 
-        if (isWishlisted) {
-          removeFromWishlist(product._id);
-        } else {
-          addToWishlist(product);
-        }
-      }}
-      className="
+                if (isWishlisted) {
+                  removeFromWishlist(product._id);
+                } else {
+                  addToWishlist(product);
+                }
+              }}
+              className="
       hidden lg:flex
         h-[60px]
         rounded-full
@@ -778,35 +775,34 @@ const selectedSizeData =
         duration-300
         hover:border-black
       "
-    >
+            >
 
-      <Heart
-        size={20}
-        className={`transition ${
-          isWishlisted
-            ? "fill-red-500 text-red-500"
-            : "text-red-500"
-        }`}
-      />
+              <Heart
+                size={20}
+                className={`transition ${isWishlisted
+                  ? "fill-red-500 text-red-500"
+                  : "text-red-500"
+                  }`}
+              />
 
-      {isWishlisted
-        ? "Wishlisted"
-        : "Add Wishlist"}
+              {isWishlisted
+                ? "Wishlisted"
+                : "Add Wishlist"}
 
-    </button>
-
+            </button>
 
 
 
 
 
-<a
-  href="https://wa.me/918130385561"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <button
-    className="
+
+            <a onClick={() => handleWhatsappClick({ source: "Website product page", obj: product.name || "N/A" })}
+              href="https://wa.me/918130385561"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button
+                className="
  
       h-[60px]
       rounded-full
@@ -829,31 +825,31 @@ const selectedSizeData =
       gap-2
       
     "
-  >
-    <FaWhatsapp size={22} />
-    WhatsApp Now
-  </button>
-</a>
+              >
+                <FaWhatsapp size={22} />
+                WhatsApp Now
+              </button>
+            </a>
 
 
 
-  </div>
-
-
-
-
+          </div>
 
 
 
 
 
-</div>
+
+
+
+
+        </div>
 
 
 
 
 
-        
+
       </div>
 
       {/* TABS */}
@@ -863,13 +859,12 @@ const selectedSizeData =
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`pb-2 whitespace-nowrap text-sm sm:text-lg capitalize ${
-                activeTab === tab ? "border-b-2 border-red-500" : ""
-              }`}
-              
+              className={`pb-2 whitespace-nowrap text-sm sm:text-lg capitalize ${activeTab === tab ? "border-b-2 border-red-500" : ""
+                }`}
+
             >
 
-              
+
               {tab}
             </button>
           ))}
@@ -879,12 +874,12 @@ const selectedSizeData =
           <div
             className="text-sm sm:text-lg description-content"
             dangerouslySetInnerHTML={{
-              
+
               __html: product.longdescription || "No description available",
-             
+
             }}
           />
-   
+
         )}
 
         {activeTab === "specifications" && (
