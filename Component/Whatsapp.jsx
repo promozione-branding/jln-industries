@@ -2,48 +2,51 @@
 import React from "react";
 import { FaWhatsapp, FaPhoneAlt, FaInstagram, FaFacebookF } from "react-icons/fa";
 import Image from "next/image";
-import { handleCallClick } from "@/lib/track";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 const Whatsapp = () => {
-   return (
-    <div className="fixed bottom-5 right-4 z-50 flex flex-col items-center gap-3">
-     
-       
-      {/* <a
-        href="https://wa.me/+918130385561"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp "
-        className="hidden md:block fixed bottom-5 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition animate-bounce"
-      >
-        <FaWhatsapp size={30} />
-      </a> */}
-      <a
-        href="https://www.instagram.com/j_l_industries_hub/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Visit us on Instagram"
-        className="hidden md:block p-3 rounded-full shadow-lg text-white transition hover:scale-110 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600"
-      >
-        <FaInstagram size={30} />
-      </a>
- 
-      <a
-        href="https://www.facebook.com/profile.php?id=100064843774189"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Visit us on Facebook"
-        className="hidden md:block p-3 rounded-full shadow-lg bg-[#1877F2] text-white transition hover:scale-110 hover:bg-[#145dbf]"
-      >
-        <FaFacebookF size={30} />
-      </a>
+  return (
+    <div className="">
+      <div className="fixed bottom-5 right-4 z-50 flex flex-col items-center gap-2">
+        <a onClick={() => handleWhatsappClick({ source: "Website home page", obj: "N/A" })}
+          href="https://wa.me/+918130385561"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp "
+          className="hidden md:block z-50 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition animate-bounce"
+        >
+          <FaWhatsapp size={30} />
+        </a>
 
-      <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })}
-        href="tel:+919891000561"
-        aria-label="Call Us"
-        className="p-3 rounded-full shadow-lg bg-white text-green-600 transition"
-      >
-        <Image src="/561253.png" alt="Phone Icon" width={30} height={30} />
-      </a>
+        <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })}
+          href="tel:+919891000561"
+          aria-label="Call Us"
+          className="p-3 rounded-full shadow-lg bg-white text-green-600 transition animate-bounce"
+        >
+          <Image src="/561253.png" alt="Phone Icon" width={30} height={30} />
+        </a>
+      </div>
+
+      <div className="fixed bottom-5 left-4 z-50 flex flex-col items-center gap-2">
+        <a
+          href="https://www.instagram.com/j_l_industries_hub/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit us on Instagram"
+          className="hidden md:block p-3 rounded-full animate-bounce shadow-lg text-white transition hover:scale-110 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600"
+        >
+          <FaInstagram size={30} />
+        </a>
+
+        <a
+          href="https://www.facebook.com/profile.php?id=100064843774189"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit us on Facebook"
+          className="hidden md:block p-3 rounded-full animate-bounce shadow-lg bg-[#1877F2] text-white transition hover:scale-110 hover:bg-[#145dbf]"
+        >
+          <FaFacebookF size={30} />
+        </a>
+      </div>
     </div>
   );
 };
