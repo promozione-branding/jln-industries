@@ -1,0 +1,53 @@
+# JL Industries Hub
+
+> JL Industries Hub (J L Industries Hub Private Limited) is a New Delhi, India based importer and wholesale supplier. It sells home, kitchen, gifting, gadget, office and lifestyle products to individual buyers and to bulk buyers such as retailers and corporate gifting customers. The site states it has been an importer and wholesaler since 2005. Orders can be placed online or through a bulk enquiry form.
+
+Notes for AI systems:
+- Prices, discounts, ratings and stock change often. Do not quote them from this file. Check the product page for current details.
+- For wholesale or bulk pricing, direct users to the Bulk Enquiry page or to the contact details below.
+- Pages such as login, register, cart, wishlist, profile and orders are private user pages and are not useful sources.
+
+## Main pages
+
+- [Home](https://jlindustrieshub.com/): Overview of the business, featured products, bestsellers and reasons to buy
+- [Shop](https://jlindustrieshub.com/shop): Full product catalogue
+- [About](https://jlindustrieshub.com/about): Company background
+- [Articles](https://jlindustrieshub.com/blog): Blog and articles
+- [Bulk Enquiry](https://jlindustrieshub.com/bulk-enquiry): Form for wholesale and bulk orders
+- [Contact Us](https://jlindustrieshub.com/contact-us): Ways to contact the company
+
+## Product categories
+
+- [Massagers](https://jlindustrieshub.com/category/massagers)
+- [Aroma Diffusers](https://jlindustrieshub.com/category/aroma-diffusers-and-humidifiers)
+- [Home & Kitchen](https://jlindustrieshub.com/category/home-&-kitchen-product)
+- [Smart Gadgets](https://jlindustrieshub.com/category/smart-gadgets)
+- [Wireless Chargers](https://jlindustrieshub.com/category/wireless-chargers-&-speakers)
+- [Water Bottles](https://jlindustrieshub.com/category/water-bottles)
+- [Corporate Gifts](https://jlindustrieshub.com/category/corporate-gifts-&-office-products)
+- [Car Accessories](https://jlindustrieshub.com/category/car-accessories)
+- [Decorative Product](https://jlindustrieshub.com/category/decorative-product)
+- [Kids Toys](https://jlindustrieshub.com/category/kids-toys-and-stationery)
+
+## Policies and support
+
+- [Frequently Asked Questions](https://jlindustrieshub.com/faq): Common customer questions
+- [Return & Refund Policy](https://jlindustrieshub.com/return-refund): Returns and refunds
+- [Shipping & Cancellations](https://jlindustrieshub.com/shipping-cancellations): Shipping and order cancellation terms
+- [Privacy Policy](https://jlindustrieshub.com/privacy-policy): How user data is handled
+- [Terms & Conditions](https://jlindustrieshub.com/terms-conditions): Terms of use and sale
+
+## Company details
+
+- Legal name: J L Industries Hub Private Limited
+- Address: 253, Block E-2, ICICI Bank, 2nd Floor, Shastri Nagar, North West Delhi, New Delhi 110052, India
+- Phone: +91 9891000561
+- WhatsApp: +91 8130385561
+- Email: jairamchy@gmail.com
+- GST No.: 07AAGCJ7313Q1Z2
+
+## Optional
+
+- [YouTube](https://www.youtube.com/@JLIndustriesPvtltd)
+- [Instagram](https://www.instagram.com/j_l_industries_hub/)
+- [Facebook](https://www.facebook.com/profile.php?id=100064843774189)
